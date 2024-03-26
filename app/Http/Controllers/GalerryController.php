@@ -12,4 +12,7 @@ class GalerryController extends Controller
     public function photos(){
         return view('main.layouts.category');
     }
+    public function admin(){
+        return view('admin.layouts.dashboard');
+    }
 }
