@@ -23,6 +23,10 @@
             <li class="nav-item">
                 <a class="nav-link nav-link-2 {{Request::is('category')? 'active' : '' }}" href="/category">Kategori</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-2 {{Request::is('category')? 'active' : '' }}" href="/login">Login</a>
+          </li>
+
             <div class="container">
                 <button type="button" class="btn btn-info btn-round" data-toggle="modal" data-target="#loginModal">
                   Login

@@ -1,4 +1,4 @@
-  @extends('admin.layouts.main')
+@extends('admin.layouts.main')
   
 @section('container')
   
@@ -90,18 +90,6 @@
               <div class="card-body">
                 4,732
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="card">
-            <div class="card-header">
-              <h4>Budget vs Sales</h4>
-            </div>
-            <div class="card-body">
-              <canvas id="myChart" height="158"></canvas>
             </div>
           </div>
         </div>

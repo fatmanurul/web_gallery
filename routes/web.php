@@ -18,6 +18,9 @@ use App\Http\Controllers\registerController;
 Route::get('/', [GalerryController::class, 'index']);
 Route::get('/category', [GalerryController::class, 'photos']);
 Route::get('/admin/daftar', [GalerryController::class, 'admin']);
+Route::get('/admin/foto', [GalerryController::class, 'foto']);
+Route::get('/login', [loginController::class, 'index']);
+Route::get('/register', [loginController::class, 'register']);
 
 //route auth
 // Route::get('/login', [loginController::class ,'index'])->name('login');
