@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Catalog-Z Bootstrap 5.0 HTML Template</title>
-        <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{asset('assets/fontawesome/css/all.min.css') }}">
-        <link rel="stylesheet" href="{{asset('assets/css/templatemo-style.css') }}">
-    </head>
-
-    <body>
-        @include('main.layouts.header')    
-
-        <div class="tm-hero d-flex justify-content-center align-items-center"       data-parallax="scroll" data-image-src="{{asset('assets/img/hero2.jpg') }}">
-            <h1 class="h1">
-                Show Your Lifestyle 
-            </h1>
-        </div>
+@extends('main.layouts.main')
+  
+@section('container')
 
             <div class="container-fluid tm-container-content tm-mt-60">
                 <div class="row mb-4">
@@ -234,17 +218,7 @@
                             <span>21,204 views</span>
                         </div>
                     </div>         
-                </div> <!-- row -->            
-            </div> <!-- container-fluid, tm-container-content -->
+                </div>          
+            </div>
 
-        {{-- menampilkan footer --}}
-        @include('main.layouts.footer')
-
-        <script src="{{asset('assets/js/plugins.js') }}"></script>
-            <script>
-                $(window).on("load", function() {
-                    $('body').addClass('loaded');
-                });
-            </script>
-    </body>
-</html>
+@endsection

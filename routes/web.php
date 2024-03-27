@@ -15,7 +15,7 @@ use App\Http\Controllers\registerController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [GalerryController::class, 'index']);
+Route::get('/photos', [GalerryController::class, 'index']);
 Route::get('/category', [GalerryController::class, 'photos']);
 Route::get('/admin/daftar', [GalerryController::class, 'admin']);
 Route::get('/admin/foto', [GalerryController::class, 'foto']);
