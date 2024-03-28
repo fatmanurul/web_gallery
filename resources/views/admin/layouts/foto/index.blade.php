@@ -5,34 +5,21 @@
   <!-- Main Content -->
   <div class="main-content">
     <section class="section">
-        <div class="section-header">
-            <h1>Table</h1>
-            <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-              <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div>
-              <div class="breadcrumb-item">Table</div>
-            </div>
-          </div>
-        <div class="section-body">
-           
-           
 
-
-            <div class="card">
+             <div class="card">
                 <div class="card-header">
-                  <h4>Striped</h4>
+                  <h4>Foto</h4>
                 </div>
                 <div class="card-body">
-                 
-                  <div class="section-title">Dark</div>
-                  <a href="" class="btn btn-primary mb-4">fsjagdfjsg</a>
+                  <a href="/admin/foto/create" class="btn btn-primary mb-4">Tambah</a>
                   <table class="table table-striped table-dark">
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Deskripsi</th>
+                        <th scope="col">Tanggal unggah</th>
+                        <th scope="col">Kategori</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -41,18 +28,21 @@
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
+                        <td>@mdo</td>
                       </tr>
                       <tr>
                         <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
                       </tr>
                       <tr>
                         <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>@mdo</td>
                       </tr>
                     </tbody>
                   </table>

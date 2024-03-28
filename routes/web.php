@@ -19,6 +19,7 @@ Route::get('/photos', [GalerryController::class, 'index']);
 Route::get('/category', [GalerryController::class, 'photos']);
 Route::get('/admin/daftar', [GalerryController::class, 'admin']);
 Route::get('/admin/foto', [GalerryController::class, 'foto']);
+Route::get('/admin/foto/create', [GalerryController::class, 'create']);
 Route::get('/login', [loginController::class, 'index']);
 Route::get('/register', [loginController::class, 'register']);
 

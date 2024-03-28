@@ -18,4 +18,7 @@ class GalerryController extends Controller
     public function foto(){
         return view('admin.layouts.foto.index');
     }
+    public function create(){
+        return view('admin.layouts.foto.create');
+    }
 }

@@ -16,28 +16,28 @@
 
 
               <main class="form-signin">
-                  <h1 class="h3 mb-3 fw-normal text-center">Silahkan Login</h1>
+                  <h1 class="h3 mb-3 fw-normal text-center">Silahkan Register</h1>
                 <form action="/login" method="post"> 
                   @csrf      
                   <div class="form-floating">
-                    <input type="text" name="usr_email" class="form-control @error('usr_email') is-invalid @enderror" id="usr_email" autofocus  value="{{old('usr_email')}}" required>
-                    <label for="usr_email">Email</label>
-                    @error('usr_email')
+                    <label for="">Email</label>
+                    <input type="text" name="" class="form-control @error('') is-invalid @enderror" id="" autofocus  value="{{old('')}}" required>
+                    @error('')
                                 <div class="invalid-feedback">
                                   {{ $message }}
                                 </div>
                               @enderror
                   </div>
                   <div class="form-floating">
-                    <input type="password" name="usr_password" class="form-control class @error('usr_password') is-invalid @enderror" id="usr_password" placeholder="usr_password" required>
-                    <label for="usr_password">Kata Sandi</label>
-                    @error('usr_password')
+                    <label for="">Kata Sandi</label>
+                    <input type="password" name="" class="form-control class @error('') is-invalid @enderror" id="" placeholder="" required>
+                    @error('')
                                 <div class="invalid-feedback">
                                   {{ $message }}
                                 </div>
                               @enderror
                   </div>
-                  <p>tidak punya akun ? <a href="/register">register</a></p>
+                  <p>belum punya akun ? <a href="/register">register</a></p>
                   <button class="w-100 btn btn-lg btn-primary" type="submit">Masuk</button>
                 </form>
               </main>
