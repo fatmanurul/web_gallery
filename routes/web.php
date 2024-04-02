@@ -21,24 +21,18 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin\layouts\dashboard\index');
 })->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';
 
 
-
-
-
-
-
-
-
 Route::get('/photos', [GalerryController::class, 'index']);
 Route::get('/category', [GalerryController::class, 'photos']);
-Route::get('/admin/daftar', [GalerryController::class, 'admin']);
-Route::get('/admin/foto', [GalerryController::class, 'foto']);
-Route::get('/admin/foto/create', [GalerryController::class, 'create']);
+Route::get('/admin/daftar', [GalerryController::class, 'admin'])->middleware('auth');
+Route::get('/admin/foto', [GalerryController::class, 'foto'])->middleware('auth');
+Route::get('/admin/foto/create', [GalerryController::class, 'create'])->middleware('auth');
 // Route::get('/login', [loginController::class, 'index']);
 // Route::get('/register', [loginController::class, 'register']);
 
