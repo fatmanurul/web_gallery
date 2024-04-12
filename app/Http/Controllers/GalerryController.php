@@ -21,4 +21,11 @@ class GalerryController extends Controller
     public function create(){
         return view('admin.layouts.foto.create');
     }
+    public function kategori(){
+        return view('admin.kategori.index');
+    }
+    public function creates(){
+        return view('admin.kategori.create');
+    }
+    
 }
