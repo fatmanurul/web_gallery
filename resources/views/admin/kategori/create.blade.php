@@ -10,17 +10,30 @@
              <div class="card">
                 <div class="card-header">
                   <h4>Tambah Album</h4>
+                  @if(session()->has('error'))
+          <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+      @endif
+  
+      @if(session()->has('success'))
+          <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+      @endif
                 </div>
+         <form method="post" action="/admin/kategori" class="mb-5" enctype="multipart/form-data" data-parsley-validate>
+                  @csrf
                 <div class="mb-3 ml-4 mr-4">
                     <label for="formFile" class="form-label">Nama Album</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control @error ('NamaAlbum') is-invalid @enderror" id="NamaAlbum" name="NamaAlbum"  autofocus value="{{old('NamaAlbum')}}">
                   </div>
                   <div class="mb-3 ml-4 mr-4">
                     <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control @error ('Deskripsi') is-invalid @enderror" id="Deskripsi" name="Deskripsi"  autofocus value="{{old('Deskripsi')}}"rows="3"></textarea>
                     <div class="mb-3 mt-4 ml-4 mr-4">
                         <label for="formFile" class="form-label">Tanggal Dibuat</label>
-                        <input type="datetime-local" name="finished" class="form-control">
+                        <input type="datetime-local @error ('TanggalDibuat') is-invalid @enderror" id="TanggalDibuat" name="TanggalDibuat"  autofocus value="{{old('TanggalDibuat')}}">
                     </div>
                   </div>
                 <div class="card-body">
@@ -35,10 +48,12 @@
                   <a href="/admin/foto/create" class="btn btn-primary mb-4 mt-4">Tambah</a>
                 </div>
               </div>
+            </form>
 
 
         </div>
     </section>
   </div>
+
 
 @endsection

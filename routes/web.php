@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GalerryController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\PhotoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +18,9 @@ use App\Http\Controllers\registerController;
 |
 */
 // auth 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('admin\layouts\dashboard\index');
@@ -35,8 +37,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::get('/admin/daftar', [GalerryController::class, 'admin'])->middleware('auth');
     Route::get('/admin/foto', [GalerryController::class, 'foto'])->middleware('auth');
     Route::get('/admin/foto/create', [GalerryController::class, 'create'])->middleware('auth');
-    Route::get('/admin/kategori', [GalerryController::class, 'kategori'])->middleware('auth');
-    Route::get('/admin/kategori/create', [GalerryController::class, 'creates'])->middleware('auth');
+    Route::get('/admin/kategori', [AlbumController::class])->name('/admin/kategori')->middleware('auth');
 });
 // Route::get('/login', [loginController::class, 'index']);
 // Route::get('/register', [loginController::class, 'register']);

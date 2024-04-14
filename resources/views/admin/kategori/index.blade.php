@@ -11,6 +11,11 @@
                   <h4>Kategori</h4>
                 </div>
                 <div class="card-body">
+          @if(session()->has('success'))
+              <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+              </div>
+          @endif
                   <a href="/admin/kategori/create" class="btn btn-primary mb-4">Tambah</a>
                   <table class="table table-striped table-dark">
                     <thead>
