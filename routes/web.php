@@ -37,7 +37,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     Route::get('/admin/daftar', [GalerryController::class, 'admin'])->middleware('auth');
     Route::get('/admin/foto', [GalerryController::class, 'foto'])->middleware('auth');
     Route::get('/admin/foto/create', [GalerryController::class, 'create'])->middleware('auth');
-    Route::get('/admin/kategori', [AlbumController::class])->name('/admin/kategori')->middleware('auth');
+    Route::resource('/admin/kategori', AlbumController::class)->middleware('auth');
 });
 // Route::get('/login', [loginController::class, 'index']);
 // Route::get('/register', [loginController::class, 'register']);

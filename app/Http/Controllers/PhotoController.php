@@ -14,7 +14,9 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        $photo = Photo::all(); 
+        
+        return view('admin.layouts.foto.index', ['photo' => $photo]);
     }
 
     /**
@@ -24,7 +26,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.layouts.foto.create');
     }
 
     /**

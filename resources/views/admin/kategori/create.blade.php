@@ -22,7 +22,7 @@
         </div>
       @endif
                 </div>
-         <form method="post" action="/admin/kategori" class="mb-5" enctype="multipart/form-data" data-parsley-validate>
+        <form method="post" action="/admin/kategori" class="mb-5" enctype="multipart/form-data" data-parsley-validate>
                   @csrf
                 <div class="mb-3 ml-4 mr-4">
                     <label for="formFile" class="form-label">Nama Album</label>
@@ -33,24 +33,16 @@
                     <textarea class="form-control @error ('Deskripsi') is-invalid @enderror" id="Deskripsi" name="Deskripsi"  autofocus value="{{old('Deskripsi')}}"rows="3"></textarea>
                     <div class="mb-3 mt-4 ml-4 mr-4">
                         <label for="formFile" class="form-label">Tanggal Dibuat</label>
-                        <input type="datetime-local @error ('TanggalDibuat') is-invalid @enderror" id="TanggalDibuat" name="TanggalDibuat"  autofocus value="{{old('TanggalDibuat')}}">
+                        <input type="datetime-local" name="TanggalDibuat" id="TanggalDibuat" name="TanggalDibuat" >
                     </div>
                   </div>
                 <div class="card-body">
-                    {{-- <label for="formFile" class="form-label"></label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select> --}}
                   <a href="/admin/foto" class="btn btn-warning" style="color: white">kembali</a>
-                  <a href="/admin/foto/create" class="btn btn-primary mb-4 mt-4">Tambah</a>
+                  {{-- <a href="/admin/foto/create" class="btn btn-primary mb-4 mt-4">Tambah</a> --}}
+                  <button type="submit" class="btn btn-primary mb-4 mt-4">Tambah</button>
                 </div>
               </div>
-            </form>
-
-
+          </form>
         </div>
     </section>
   </div>

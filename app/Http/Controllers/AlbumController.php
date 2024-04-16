@@ -37,19 +37,20 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $message = [
-            'unique' => 'Nama sudah dipakai!',
+            // 'unique' => 'Nama sudah dipakai!',
             'required' => 'Silahkan isi kolom ini!'
         ];
         $validatedData = $request->validate([
-            'NamaAlbum' => 'required|max:255|unique:newalbums', 
-            'Deskripsi' => 'required|max:255|',
-            'TanggalDibuat' => 'required|date|'   
+            'NamaAlbum' => 'required|max:255', 
+            'Deskripsi' => 'required|max:255',
+            'TanggalDibuat' => 'required'   
         ],$message
     );
 
-        $validatedData['abm_created_by'] = auth()->user()->UserID;
-
+        $validatedData['UserID'] = auth()->user()->UserID;
+// dd($validatedData);
 
         // insert data ke database
         Album::create($validatedData);

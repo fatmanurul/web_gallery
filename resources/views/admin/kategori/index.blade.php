@@ -27,24 +27,14 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
+          @foreach ($album as $album)
+           <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $album->NamaAlbum }}</td>
+              <td>{{ $album->Deskripsi }}</td>
+              <td>{{ $album->TanggalDibuat }}</td>
+            </tr>
+            @endforeach
                     </tbody>
                   </table>
                 </div>
