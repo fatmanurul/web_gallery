@@ -22,7 +22,7 @@
         </div>
       @endif
                 </div>
-        <form method="post" action="/admin/kategori" class="mb-5" enctype="multipart/form-data" data-parsley-validate>
+        <form method="post" action="/admin/album" class="mb-5" enctype="multipart/form-data" data-parsley-validate>
                   @csrf
                 <div class="mb-3 ml-4 mr-4">
                     <label for="formFile" class="form-label">Nama Album</label>

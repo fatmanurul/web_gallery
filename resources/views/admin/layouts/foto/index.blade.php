@@ -16,34 +16,26 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Foto</th>
+                        <th scope="col">Judul Foto</th>
                         <th scope="col">Deskripsi</th>
                         <th scope="col">Tanggal unggah</th>
-                        <th scope="col">Kategori</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">TanggalUnggah</th>
+                        <th scope="col">Album</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                      </tr>
+          @foreach ($photo as $photo)
+           <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $photo->JudulFoto }}</td>
+              <td>{{ $photo->DeskripsiFoto }}</td>
+              <td>{{ $photo->TanggalUnggah }}</td>
+              <td>{{ $photo->LokasiFile }}</td>
+              <td>{{ $photo->TanggalUnggah }}</td>
+              <td>{{ $photo->NamaAlbum }}</td>
+            </tr>
+            @endforeach
                     </tbody>
                   </table>
                 </div>

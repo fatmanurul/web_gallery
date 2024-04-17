@@ -10,7 +10,20 @@
              <div class="card">
                 <div class="card-header">
                   <h4>Tambah Foto</h4>
+                  @if(session()->has('error'))
+          <div class="alert alert-danger" role="alert">
+            {{ session('error') }}
+        </div>
+      @endif
+  
+      @if(session()->has('success'))
+          <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+      @endif
                 </div>
+        <form method="post" action="/admin/foto" class="mb-5" enctype="multipart/form-data" data-parsley-validate>
+                  @csrf
                 <div class="mb-3 ml-4 mr-4">
                   <label for="formFile" class="form-label">Judul Foto</label>
                   <input class="form-control @error ('JudulFoto') is-invalid @enderror" id="JudulFoto" name="JudulFoto"  autofocus value="{{old('JudulFoto')}}">
@@ -22,25 +35,28 @@
                   <div class="mb-3 ml-4 mr-4">
                     <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
                     <textarea class="form-control @error ('DeskripsiFoto') is-invalid @enderror" id="DeskripsiFoto" name="DeskripsiFoto" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    <div class="mb-3 mt-4 ml-4 mr-4">
-                        <label for="formFile" class="form-label">Tanggal Unggah</label>
-                        <input type="datetime-local" name="finished" class="form-control @error ('TanggalUnggah') is-invalid @enderror" id="TanggalUnggah" name="TanggalUnggah">
-                    </div>
+                  </div>
+                  <div class="mb-3 mt-4 ml-4 mr-4">
+                      <label for="formFile" class="form-label">Tanggal Unggah</label>
+                      <input type="datetime-local" name="TanggalUnggah" id="TanggalUnggah" name="TanggalUnggah" >
                   </div>
                 <div class="card-body">
-                    <label for="formFile" class="form-label">Album</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                  <label for="Album" class="form-label">Album</label>
+                  <select class="form-select" name="AlbumID">
+                      <option value="">Pilih Album</option>
+                      @foreach ($Album as $Album)
+                          <option value="{{$Album->AlbumID}}">{{ $Album->NamaAlbum}}</option>
+                      @endforeach
+                  </select>
+                  {{-- @error('NamaAlbum') <!-- Menampilkan pesan error untuk field NamaAlbum -->
+                  <div class="text-danger">{{ $message }}</div>
+                  @enderror --}}
                   <a href="/admin/foto" class="btn btn-warning" style="color: white">kembali</a>
-                  <a href="/admin/foto/create" class="btn btn-primary mb-4 mt-4">Tambah</a>
+                  <button type="submit" class="btn btn-primary mb-4 mt-4">Tambah</button>
                 </div>
               </div>
 
-
+            </form>
         </div>
     </section>
   </div>

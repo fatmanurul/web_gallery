@@ -55,7 +55,7 @@ class AlbumController extends Controller
         // insert data ke database
         Album::create($validatedData);
 
-        return redirect('/admin/kategori')->with('success', 'Kategori baru telah ditambahkan!');
+        return redirect('/admin/album')->with('success', 'Album baru telah ditambahkan!');
     }
 
     /**

@@ -16,7 +16,7 @@
                 {{ session('success') }}
               </div>
           @endif
-                  <a href="/admin/kategori/create" class="btn btn-primary mb-4">Tambah</a>
+                  <a href="/admin/album/create" class="btn btn-primary mb-4">Tambah</a>
                   <table class="table table-striped table-dark">
                     <thead>
                       <tr>

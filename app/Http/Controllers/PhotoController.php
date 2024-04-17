@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Photo;
+use App\Models\Album;
 use Illuminate\Http\Request;
 
 class PhotoController extends Controller
@@ -14,8 +15,9 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        $photo = Photo::join('newalbums', 'newalbums.AlbumID', '=', 'photos.FotoID')
+        $photo = Photo::join('newalbums', 'newalbums.AlbumID', '=', 'photos.AlbumID')
                    ->get();
+                //    dd($photo);
 
         return view('admin.layouts.foto.index', compact('photo'));
 
@@ -28,7 +30,8 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        return view('admin.layouts.foto.create');
+    $Album = Album::all(); // Ambil semua data album dari tabel album
+    return view('admin.layouts.foto.create', compact('Album'));
     }
 
     /**
@@ -39,7 +42,44 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $messages = [
+            'required' => 'Silahkan isi kolom ini!',
+            'max' => 'Tidak boleh lebih dari 100 karakter!',
+            'image' => 'Anda hanya dapat mengunggah gambar!'
+        ];
+        
+        $request->validate([
+            'JudulFoto' => [
+                'required',
+                'max:100',
+            ],
+            'AlbumID' => 'required',
+            'DeskripsiFoto' => 'required',
+            'LokasiFile' => 'required|image',
+            'TanggalUnggah' => 'required'
+        ], $messages);
+        // dd($request);
+        $photo = new Photo;
+        $photo->JudulFoto = $request->JudulFoto;
+        $photo->AlbumID = $request->AlbumID;
+        $photo->DeskripsiFoto = $request->DeskripsiFoto;
+        $photo->TanggalUnggah = $request->TanggalUnggah;
+        $photo->LokasiFile = $request->LokasiFile;
+        $photo['UserID'] = auth()->user()->UserID;
+        
+        if ($request->hasFile('LokasiFile')) {
+    $files = $request->file('LokasiFile');
+    $path = storage_path('app/public/images/photo-images');
+    $files_name =  date('Ymd') . '_' . $files->getClientOriginalName();
+    $files->storeAs('images/photo-images', $files_name);
+    $photo->LokasiFile = $files_name;
+}
+        
+        $photo->save();
+        
+        return redirect('/admin/foto')->with('success', 'Photo baru telah ditambahkan!');
+        
     }
 
     /**

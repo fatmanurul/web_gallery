@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Photo;
 
 class GalerryController extends Controller
 {
     public function index(){
-        return view('main.photos.index');
+        $photo = Photo::join('newalbums', 'newalbums.AlbumID', '=', 'photos.AlbumID')
+        ->get();
+        // dd($photo);
+        return view('main.photos.index',compact('photo'));
     }
     public function photos(){
         return view('main.land.photos');
