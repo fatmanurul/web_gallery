@@ -12,19 +12,23 @@
                   <h4>Tambah Foto</h4>
                 </div>
                 <div class="mb-3 ml-4 mr-4">
+                  <label for="formFile" class="form-label">Judul Foto</label>
+                  <input class="form-control @error ('JudulFoto') is-invalid @enderror" id="JudulFoto" name="JudulFoto"  autofocus value="{{old('JudulFoto')}}">
+                </div>
+                <div class="mb-3 ml-4 mr-4">
                     <label for="formFile" class="form-label">Foto</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control @error ('LokasiFile') is-invalid @enderror" id="LokasiFile" name="LokasiFile" type="file" id="formFile">
                   </div>
                   <div class="mb-3 ml-4 mr-4">
                     <label for="exampleFormControlTextarea1" class="form-label">Deskripsi</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control @error ('DeskripsiFoto') is-invalid @enderror" id="DeskripsiFoto" name="DeskripsiFoto" id="exampleFormControlTextarea1" rows="3"></textarea>
                     <div class="mb-3 mt-4 ml-4 mr-4">
                         <label for="formFile" class="form-label">Tanggal Unggah</label>
-                        <input type="datetime-local" name="finished" class="form-control">
+                        <input type="datetime-local" name="finished" class="form-control @error ('TanggalUnggah') is-invalid @enderror" id="TanggalUnggah" name="TanggalUnggah">
                     </div>
                   </div>
                 <div class="card-body">
-                    <label for="formFile" class="form-label"></label>
+                    <label for="formFile" class="form-label">Album</label>
                     <select class="form-select" aria-label="Default select example">
                         <option selected>Open this select menu</option>
                         <option value="1">One</option>

@@ -14,9 +14,11 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        $photo = Photo::all(); 
-        
-        return view('admin.layouts.foto.index', ['photo' => $photo]);
+        $photo = Photo::join('newalbums', 'newalbums.AlbumID', '=', 'photos.FotoID')
+                   ->get();
+
+        return view('admin.layouts.foto.index', compact('photo'));
+
     }
 
     /**
