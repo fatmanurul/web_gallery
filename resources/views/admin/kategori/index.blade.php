@@ -8,7 +8,7 @@
 
              <div class="card">
                 <div class="card-header">
-                  <h4>Kategori</h4>
+                  <h4>Album</h4>
                 </div>
                 <div class="card-body">
           @if(session()->has('success'))

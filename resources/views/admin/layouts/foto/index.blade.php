@@ -20,7 +20,6 @@
                         <th scope="col">Deskripsi</th>
                         <th scope="col">Tanggal unggah</th>
                         <th scope="col">Foto</th>
-                        <th scope="col">TanggalUnggah</th>
                         <th scope="col">Album</th>
                       </tr>
                     </thead>
@@ -32,7 +31,6 @@
               <td>{{ $photo->DeskripsiFoto }}</td>
               <td>{{ $photo->TanggalUnggah }}</td>
               <td>{{ $photo->LokasiFile }}</td>
-              <td>{{ $photo->TanggalUnggah }}</td>
               <td>{{ $photo->NamaAlbum }}</td>
             </tr>
             @endforeach
