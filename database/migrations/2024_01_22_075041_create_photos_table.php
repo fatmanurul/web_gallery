@@ -21,7 +21,7 @@ class CreatePhotosTable extends Migration
             $table->string('LokasiFile');
             $table->UnsignedBigInteger('AlbumID');
             $table->UnsignedBigInteger('UserID');
-            $table->unsignedBigInteger('fto_created_by');
+            $table->unsignedBigInteger('fto_created_by')->nullable();;
             $table->unsignedBigInteger('fto_updated_by')->nullable();
             $table->unsignedBigInteger('fto_deleted_by')->nullable();
             $table->foreign('fto_created_by')->references('UserID')->on('users')->onDelete('cascade');

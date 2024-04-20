@@ -7,6 +7,7 @@ use App\Http\Controllers\registerController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\VisitorAlbumController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/photos', [GalerryController::class, 'index']);
 Route::get('/foto/{id}/detail', [GalerryController::class, 'detail']);
+Route::post('/foto/{FotoID}',[CommentController::class,'store']);
 Route::get('/category', [VisitorAlbumController::class, 'album']);
 Route::get('/album/{id}/detail', [VisitorAlbumController::class, 'detail']);
 
@@ -45,6 +47,7 @@ Route::post('/photos/{photo}/like', [PhotoController::class, 'likePhoto'])->name
 
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
+    Route::get('/admin/komen', [CommentController::class, 'index'])->name('admin.comments.index')->middleware('auth');
     Route::get('/admin/daftar', [GalerryController::class, 'admin'])->middleware('auth');
     Route::get('/profile', [GalerryController::class, 'profile'])->middleware('auth');
     Route::resource('/admin/foto', PhotoController::class)->middleware('auth');

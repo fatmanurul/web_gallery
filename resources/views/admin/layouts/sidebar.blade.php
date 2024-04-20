@@ -17,6 +17,8 @@
 
               <a href="/admin/foto" class="nav-link nav-link-2 {{Request::is('admin/foto')? 'active' : '' }}" ><i class="fas fa-th"></i> <span>Data Foto</span></a> 
 
+              <a href="/admin/komen" class="nav-link nav-link-2 {{Request::is('admin/komen')? 'active' : '' }}" ><i class="fas fa-th"></i> <span>Komentar</span></a> 
+
         
           </ul>
         </aside>

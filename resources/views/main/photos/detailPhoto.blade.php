@@ -21,7 +21,7 @@
                     <footer class="blockquote-footer"> <cite title="Source Title">Tanggal Unggah : {{$photo->TanggalUnggah}}</cite></footer>
                   </blockquote>
                 </div>
-              </div>
+            </div>
            
                   <div class="row">
                     <div class="card-body p-4">

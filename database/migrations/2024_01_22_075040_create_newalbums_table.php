@@ -19,7 +19,7 @@ class CreateNewalbumsTable extends Migration
             $table->text('Deskripsi');
             $table->date('TanggalDibuat');
             $table->unsignedBigInteger('UserID');
-            $table->unsignedBigInteger('abm_created_by');
+            $table->unsignedBigInteger('abm_created_by')->nullable();;
             $table->unsignedBigInteger('abm_updated_by')->nullable();
             $table->unsignedBigInteger('abm_deleted_by')->nullable();
             $table->foreign('UserID')->references('UserID')->on('users')->onDelete('cascade');
