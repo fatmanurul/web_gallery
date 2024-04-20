@@ -2,7 +2,7 @@
     <div class="container-fluid tm-container-small">
         <div class="row">
             <div style="text-align: center; color:rgb(79, 71, 71)">
-                Copyright 2020 Catalog-Z Company. All rights reserved.
+                Fatma NH Life Style.
             </div>
         </div>
     </div>

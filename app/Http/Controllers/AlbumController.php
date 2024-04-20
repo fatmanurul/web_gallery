@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Album;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AlbumController extends Controller
 {
@@ -14,8 +15,10 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $album = Album::all(); 
-        
+        $album = Album::where('UserID','=',Auth::user()->UserID)
+        ->orderBy('abm_created_at', 'desc')
+        ->get(); 
+        // dd(Auth::user()->UserID);
         return view('admin.kategori.index', ['album' => $album]);
     }
 
@@ -77,7 +80,10 @@ class AlbumController extends Controller
      */
     public function edit(Album $album)
     {
-        //
+        // dd($album);
+        return view('admin.kategori.edit',[
+            'album' => $album
+        ]);
     }
 
     /**
@@ -89,7 +95,23 @@ class AlbumController extends Controller
      */
     public function update(Request $request, Album $album)
     {
-        //
+        // dd($category);
+        $message = [
+            'required' => 'Silahkan isi kolom ini!',
+        ];
+        $validatedData = $request->validate([
+            'NamaAlbum' => 'required|max:255',
+            'Deskripsi'=>'required',
+            'TanggalDibuat'=>'required'
+        ],$message
+     );
+
+         $validatedData['abm_updated_by'] = auth()->user()->UserID;
+
+         Album::where('AlbumID', $album->AlbumID)
+                ->update($validatedData); 
+
+        return redirect('/admin/album')->with('success', 'Album telah diperbarui!');
     }
 
     /**
@@ -100,6 +122,7 @@ class AlbumController extends Controller
      */
     public function destroy(Album $album)
     {
-        //
+        Album::destroy($album->AlbumID);
+        return redirect('/admin/album')->with('success','Album Berhasil Dihapus');
     }
 }

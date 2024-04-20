@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Photo;
 use App\Models\Album;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PhotoController extends Controller
@@ -16,6 +17,8 @@ class PhotoController extends Controller
     public function index()
     {
         $photo = Photo::join('newalbums', 'newalbums.AlbumID', '=', 'photos.AlbumID')
+                   ->where('photos.UserID', '=', Auth::user()->UserID)
+                   ->orderBy('photos.fto_created_at', 'desc')
                    ->get();
                 //    dd($photo);
 
@@ -78,7 +81,7 @@ class PhotoController extends Controller
         
         $photo->save();
         
-        return redirect('/admin/foto')->with('success', 'Photo baru telah ditambahkan!');
+        return redirect('/admin/foto')->with('success', 'Foto baru telah ditambahkan!');
         
     }
 
@@ -101,7 +104,9 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
+        return view('admin.layouts.foto.edit',[
+            'photo' => $photo
+        ]);
     }
 
     /**
@@ -113,7 +118,25 @@ class PhotoController extends Controller
      */
     public function update(Request $request, Photo $photo)
     {
-        //
+        // dd($category);
+        $message = [
+            'required' => 'Silahkan isi kolom ini!',
+        ];
+        $validatedData = $request->validate([
+            'JudulFoto' => 'required|max:255',
+            'DeskripsiFoto'=>'required',
+            'TanggalUnggah'=>'required',
+            'LokasiFile'=>'required',
+            'Album'=>'required',
+        ],$message
+     );
+
+         $validatedData['abm_updated_by'] = auth()->user()->UserID;
+
+         Album::where('AlbumID', $album->AlbumID)
+                ->update($validatedData); 
+
+        return redirect('/admin/album')->with('success', 'Album telah diperbarui!');
     }
 
     /**
@@ -124,6 +147,33 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        //
+        Photo::destroy($photo->FotoID);
+        return redirect('/admin/foto')->with('success','Foto Berhasil Dihapus');
     }
+
+    public function likePhoto(Request $request, $photoId)
+{
+    $photo = Photo::find($photoId);
+    if (!$photo) {
+        return response()->json(['success' => false, 'message' => 'Photo not found'], 404);
+    }
+    
+    // Jika permintaan merupakan unlike
+    if ($request->isMethod('DELETE')) {
+        if ($photo->likes > 0) {
+            $photo->likes--;
+            $photo->save();
+            return response()->json(['success' => true, 'likes' => $photo->likes]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Photo is not liked'], 400);
+        }
+    } else { // Jika permintaan merupakan like
+        $photo->likes++;
+        $photo->save();
+        return response()->json(['success' => true, 'likes' => $photo->likes]);
+    }
+}
+
+    
+
 }

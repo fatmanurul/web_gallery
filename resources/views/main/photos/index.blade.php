@@ -19,14 +19,92 @@
                           <div class="d-flex justify-content-center mb-3">
                             <small class="mr-3"><i class="fa-regular fa-user"></i> {{$photo->user->username}}</small>
                             <small class="mr-3"><i class="fa-regular fa-folder"></i> {{ $photo->NamaAlbum }}</small>
-                            <small class="mr-3"><i class="fa-regular fa-comment"></i> 15</small>
-                            <small class="mr-3"><i class="fa-regular fa-heart"></i> 15</small>
+                            <small class="mr-3"><i class="fa-regular fa-comment"></i> 15</small>                       
+                            <small id="like-icon-{{ $photo->FotoID }}" class="mr-3 like-icon" data-photo-id="{{ $photo->FotoID }}">
+                                <i class="fa-regular fa-heart"></i>
+                            </small>
+
+
                           </div>
-                          <a href="" class="btn btn-primary px-4 mx-auto my-2">Read More</a>
+                    
+                          <a href="/foto/{{ $photo->FotoID }}/detail" class="btn btn-primary px-4 mx-auto my-2">Read More</a>
+
                         </div>
                       </div>
                     </div>
                     @endforeach
                 </div>
                   
+                <script>
+// Inisialisasi likeIcons dan unlikeIcons
+const likeIcons = document.querySelectorAll('.like-icon');
+const unlikeIcons = document.querySelectorAll('.unlike-icon');
+
+// Event listener untuk setiap ikon hati yang belum dilike
+likeIcons.forEach(icon => {
+    icon.addEventListener('click', function() {
+        const FotoID = this.getAttribute('data-photo-id');
+        const likeIcon = document.getElementById(`like-icon-${FotoID}`);
+        
+        // Mengambil status like saat ini dari class ikon hati
+        const isLiked = likeIcon.classList.contains('liked');
+
+        // Mengatur metode berdasarkan status like saat ini
+        const method = isLiked ? 'DELETE' : 'POST';
+        
+        fetch(`/photos/${FotoID}/like`, {
+            method: method, // Menggunakan DELETE untuk unlike, POST untuk like
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ photo_id: FotoID })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const likeCount = data.likes;
+                likeIcon.innerHTML = `<i class="fa-regular fa-heart"></i> ${likeCount}`;
+                
+                // Mengubah status like pada class ikon hati
+                likeIcon.classList.toggle('liked');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+// Event listener untuk setiap ikon hati yang sudah dilike
+unlikeIcons.forEach(icon => {
+    icon.addEventListener('click', function() {
+        const FotoID = this.getAttribute('data-photo-id');
+        const likeIcon = document.getElementById(`like-icon-${FotoID}`);
+        
+        fetch(`/photos/${FotoID}/unlike`, {
+            method: 'DELETE', // Menggunakan DELETE untuk unlike
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ photo_id: FotoID })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const likeCount = data.likes;
+                likeIcon.innerHTML = `<i class="fa-regular fa-heart"></i> ${likeCount}`;
+                
+                // Menghapus class 'liked' untuk menunjukkan bahwa foto tidak disukai lagi
+                likeIcon.classList.remove('liked');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+
+                </script>
+                
+                
+                
 @endsection

@@ -11,6 +11,11 @@
                   <h4>Foto</h4>
                 </div>
                 <div class="card-body">
+          @if(session()->has('success'))
+              <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+              </div>
+          @endif
                   <a href="/admin/foto/create" class="btn btn-primary mb-4">Tambah</a>
                   <table class="table table-striped table-dark">
                     <thead>
@@ -21,6 +26,7 @@
                         <th scope="col">Tanggal unggah</th>
                         <th scope="col">Foto</th>
                         <th scope="col">Album</th>
+                        <th scope="col">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -32,6 +38,15 @@
               <td>{{ $photo->TanggalUnggah }}</td>
               <td>{{ $photo->LokasiFile }}</td>
               <td>{{ $photo->NamaAlbum }}</td>
+              <td>
+                {{-- <a href="/admin/album/{{ $album->AlbumID }}/edit" class="badge bg-warning"><i class="fas fa-edit"></i></a> --}}
+  
+                <form action="/admin/foto/{{ $photo->FotoID }}" method="POST" class="d-inline">
+                  @method('delete')
+                  @csrf
+                  <button class="badge bg-danger border-0" onclick="return confirm('Yakin akan dihapus??')"><i class="fas fa-trash"></i></button>
+                </form>
+                </td>
             </tr>
             @endforeach
                     </tbody>
