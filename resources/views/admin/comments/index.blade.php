@@ -35,7 +35,7 @@
             <td>{{ $comments->JudulFoto }}</td>
             <td>{{ $comments->cmn_comment }}</td>
             <td>{{ $comments->cmn_name }}</td>
-            td>{{ $comments->cmn_email }}</td>
+            <td>{{ $comments->cmn_email}}</td>
           </tr>
           @endforeach
                   </tbody>

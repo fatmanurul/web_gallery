@@ -34,6 +34,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/photos', [GalerryController::class, 'index']);
 Route::get('/foto/{id}/detail', [GalerryController::class, 'detail']);
+Route::post('/foto/{id}',  [GalerryController::class, 'storeComment']);
 Route::post('/foto/{FotoID}',[CommentController::class,'store']);
 Route::get('/category', [VisitorAlbumController::class, 'album']);
 Route::get('/album/{id}/detail', [VisitorAlbumController::class, 'detail']);

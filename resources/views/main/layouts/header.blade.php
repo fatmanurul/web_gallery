@@ -18,10 +18,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link nav-link-1 {{Request::is('photos')? 'active' : '' }}" aria-current="page" href="/photos">Photos</a>
+                <a class="nav-link nav-link-1 {{Request::is('photos*')? 'active' : '' }}" aria-current="page" href="/photos">Photos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link nav-link-2 {{Request::is('category')? 'active' : '' }}" href="/category">Kategori</a>
+                <a class="nav-link nav-link-2 {{Request::is('category*')? 'active' : '' }}" href="/category">Kategori</a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-link-3 {{Request::is('login')? 'active' : '' }}" href="/login">Login</a>

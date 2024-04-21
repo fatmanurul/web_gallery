@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Album;
+use App\Models\Comment;
+
 use App\Models\Photo;
 
 class VisitorAlbumController extends Controller
@@ -24,22 +26,26 @@ class VisitorAlbumController extends Controller
         ]);
     }
 
-    public function showPhotos($id)
-{
-    $photos = Photo::where('AlbumID', $id)->get();
-    $album = Album::findOrFail($id);
+//     public function showPhotos($id)
+// {
+//     $photos = Photo::where('AlbumID', $id)->get();
+//     $album = Album::findOrFail($id);
 
-    return view('album.photos', [
-        'photos' => $photos,
-        'album' => $album
-    ]);
-}
+
+//     return view('album.photos', [
+//         'photos' => $photos,
+//         'album' => $album
+//     ]);
+// }
 public function detail($id)
 {
-    $photos = Photo::where('AlbumID', $id)->get();
+    $photos = Photo::join('newalbums', 'newalbums.AlbumID', '=', 'photos.AlbumID')
+                    ->where('photos.AlbumID', $id)
+                    ->get(['photos.*', 'newalbums.NamaAlbum', 'newalbums.Deskripsi', 'newalbums.TanggalDibuat']);
 
-    return view('main.land.detailAlbum',compact(['photos']));
+    return view('main.land.detailAlbum', compact('photos'));
 }
+
 
     
 }
