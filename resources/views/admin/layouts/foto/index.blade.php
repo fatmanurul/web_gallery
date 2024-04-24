@@ -39,7 +39,7 @@
               <td>{{ $photo->LokasiFile }}</td>
               <td>{{ $photo->NamaAlbum }}</td>
               <td>
-                {{-- <a href="/admin/album/{{ $album->AlbumID }}/edit" class="badge bg-warning"><i class="fas fa-edit"></i></a> --}}
+                <a href="/admin/foto/{{ $photo->FotoID }}/edit" class="badge bg-warning"><i class="fas fa-edit"></i></a>
   
                 <form action="/admin/foto/{{ $photo->FotoID }}" method="POST" class="d-inline">
                   @method('delete')

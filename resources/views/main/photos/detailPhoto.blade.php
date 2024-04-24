@@ -19,6 +19,7 @@
                         <h5>Nama Album : {{ $photo->NamaAlbum }}</h5></p>
                     <footer class="blockquote-footer"> <cite title="Source Title">Tanggal Unggah : {{ $photo->TanggalUnggah }}</cite></footer>
                   </blockquote>
+                  <small class="mr-3 like-icon"><a href="/foto/{{$photo->FotoID}}/like"><i class="fa fa-heart text-primary">{{$like}}</i></a></small>
                 </div>
             </div>
         </div>
@@ -35,7 +36,7 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5 class="card-title">Nama: <b>{{ $comment->cmn_name }}</b></h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Komentar: <b>{{ $comment->cmn_comment }}</b></h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Komentar: <b>{{ $comment->IsiKomentar }}</b></h6>
                             {{-- <p class="card-text">Komentar: <b>{{ $comment-> }}</b></p> --}}
                         </div>
                     </div>
@@ -58,33 +59,14 @@
                 <small style="line-height:5px"></small>
                 <div class="form-floating mb-3">
                     <label for="floatingTextarea2">Komentar</label>
-                    <textarea class="form-control @error('cmn_comment') is-invalid @enderror" id="cmn_comment" name="cmn_comment" style="height: 100px" required data-parsley-inputs data-parsley-trigger="keyup">{{ old('cmn_comment') }}</textarea>
-                    @error('cmn_comment')
+                    <textarea class="form-control @error('IsiKomentar') is-invalid @enderror" id="IsiKomentar" name="IsiKomentar" style="height: 100px" required data-parsley-inputs data-parsley-trigger="keyup">{{ old('IsiKomentar') }}</textarea>
+                    @error('IsiKomentar')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                     @enderror
                 </div>
-                <div class="form-floating mb-3">
-                    <label for="floatingInput">Nama</label>
-                    <input type="name" class="form-control @error ('cmn_name') is-invalid @enderror" id="cmn_name" name="cmn_name" value="{{ old('cmn_name') }}" required data-parsley-inputs data-parsley-trigger="keyup">
-                    
-                    @error('cmn_name')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
-                <div class="form-floating mb-3">
-                    <label for="floatingInput">Email</label>
-                    <input type="text" class="form-control @error ('cmn_email') is-invalid @enderror" id="cmn_email" name="cmn_email" value="{{ old('cmn_email') }}" required data-parsley-inputs data-parsley-type="email" data-parsley-trigger="keyup">
-                    
-                    @error('cmn_email')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                    @enderror
-                </div>
+               
                 <div class="form-floating mb-3">
                     <button type="submit" class="btn btn-primary custom-button">Kirim</button>
                 </div>

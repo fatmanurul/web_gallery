@@ -17,6 +17,7 @@ class CreatePhotocommentsTable extends Migration
             $table->bigIncrements('KomenterID');
             $table->text('IsiKomentar');
             $table->date('TanggalKomentar');
+            $table->string('cmn_name');
             $table->UnsignedBigInteger('FotoID');
             $table->UnsignedBigInteger('UserID');
             $table->timestamps();

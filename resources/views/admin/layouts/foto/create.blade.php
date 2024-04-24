@@ -21,7 +21,7 @@
             {{ session('success') }}
         </div>
       @endif
-                </div>
+  </div>
         <form method="post" action="/admin/foto" class="mb-5" enctype="multipart/form-data" data-parsley-validate>
                   @csrf
                 <div class="mb-3 ml-4 mr-4">

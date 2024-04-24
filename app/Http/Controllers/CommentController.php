@@ -12,8 +12,8 @@ class CommentController extends Controller
 {
     public function index(Comment $comment)
     {
-        $comments = Comment::join('photos','photos.FotoID', 'comments.FotoID')
-                            ->orderBy('comments.cmn_created_at', 'desc') 
+        $comments = Comment::join('photos','photos.FotoID', 'photocomments.FotoID')
+                            ->orderBy('photocomments.TanggalKomentar', 'desc') 
                             ->get();
                             
         return view('admin.comments.index',[
@@ -27,13 +27,11 @@ class CommentController extends Controller
 
         $messages = [
             'required' => 'Silahkan isi kolom ini!',
-            'email' => 'Email tidak valid!'
         ];
 
         $request->validate([
-            'cmn_comment' => 'required|max:600',
+            'IsiKomentar' => 'required|max:600',
             'cmn_name' => 'required|max:255',
-            'cmn_email' => 'required|email',
         ], $messages);
 
         $FotoID = Photo::where('FotoID', $FotoID)->first();
@@ -42,8 +40,8 @@ class CommentController extends Controller
         //  dd($findArticle);
         $comments-> FotoID = $FotoID->FotoID; 
         $comments-> cmn_name = $request->cmn_name;
-        $comments-> cmn_email = $request->cmn_email;
-        $comments-> cmn_comment = $request->cmn_comment;
+
+        $comments-> IsiKomentar = $request->IsiKomentar;
 
         $comments->save();
 

@@ -5,18 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Photo;
 use App\Models\Album;
+use App\Models\Like;
+use App\Models\User;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class GalerryController extends Controller
 {
-    public function index(){
-        $photo = Photo::join('newalbums', 'newalbums.AlbumID', '=', 'photos.AlbumID')
-        ->orderBy('photos.fto_created_at', 'desc')
-        ->get();
+    // Di method index GalerryController.php
+    // Di method index GalerryController.php
+public function index(){
+    $photos = Photo::join('newalbums', 'newalbums.AlbumID', '=', 'photos.AlbumID')
+    ->select('photos.*', 'newalbums.NamaAlbum') // Pilih kolom yang diperlukan
+    ->orderBy('photos.fto_created_at', 'desc')
+    ->withCount(['comments']) // Menghitung jumlah komentar untuk setiap foto
+    ->get();
 
-        // dd($photo);
-        return view('main.photos.index',compact('photo'));
-    }
+    return view('main.photos.index', compact('photos'));
+}
+
+
 
 //     public function detail($id)
 // {
@@ -32,57 +40,49 @@ public function detail($id)
         ->where('FotoID', $id)
         ->get();
 
+    $like = Like::where('FotoID', $id)->count();
     $foto_id = $id;
     $comments = Comment::where('FotoID', $id)->get();
 
-    return view('main.photos.detailPhoto', compact(['photos', 'comments', 'foto_id']));
+    return view('main.photos.detailPhoto', compact(['photos', 'comments', 'foto_id', 'like']));
 }
 
 public function storeComment(Request $request, $id)
 {
-    // Validasi input
     $validatedData = $request->validate([
-        'cmn_name' => 'required',
-        'cmn_comment' => 'required',
-        'cmn_email' => 'required|email',
+        'IsiKomentar' => 'required'
     ]);
 
-    // Simpan komentar ke dalam database
-    $comment = new Comment();
-    $comment->FotoID = $id;
-    $comment->cmn_name = $request->cmn_name;
-    $comment->cmn_comment = $request->cmn_comment;
-    $comment->cmn_email = $request->cmn_email;
-    $comment->save();
+    // Mendapatkan pengguna yang sedang login, jika ada
+    if(Auth::check()) {
+        $user = Auth::user();
 
-    // Redirect ke halaman detail foto
-    return redirect()->back()->with('success', 'Komentar berhasil ditambahkan');
+        // Simpan komentar ke dalam database dengan UserID
+        $comment = new Comment();
+        $comment->FotoID = $id;
+        $comment->IsiKomentar = $request->IsiKomentar;
+        $comment->cmn_name = $user->username; // Gunakan nama pengguna yang sedang login
+        $comment->UserID = $user->UserID; // Gunakan ID pengguna yang sedang login
+        $comment->TanggalKomentar = now(); // Tanggal komentar diisi otomatis
+        $comment->save();
+
+        // Redirect ke halaman detail foto
+        return redirect()->back()->with('success', 'Komentar berhasil ditambahkan');
+    } else {
+        // Tindakan jika tidak ada pengguna yang sedang login
+        return redirect()->back()->with('error', 'Silakan login terlebih dahulu untuk menambahkan komentar');
+    }
 }
 
 
-    // public function photos(){
-    //     $album = Album::all(); 
-        
-    //     return view('main.land.photos',compact('album'));
-    // }
+
+    
     public function admin(){
         return view('admin.layouts.dashboard.index');
     }
-    // public function foto(){
-    //     return view('admin.layouts.foto.index');
-    // }
-    // public function create(){
-    //     return view('admin.layouts.foto.create');
-    // }
-    // public function kategori(){
-    //     return view('admin.kategori.index');
-    // }
-    // public function creates(){
-    //     return view('admin.kategori.create');
-    // }
-
-    // public function profile(){
-    //     return view('admin.profile');
-    // }
+   
+    public function profile(){
+        return view('admin.profile');
+    }
     
 }

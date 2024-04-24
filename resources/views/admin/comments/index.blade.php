@@ -24,7 +24,6 @@
                             <th scope="col">Judul Foto</th>
                             <th scope="col">Komentar</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Email</th>
                           </tr>
                     </tr>
                   </thead>
@@ -33,9 +32,8 @@
          <tr>
             <td>{{ $loop->iteration }}</td>
             <td>{{ $comments->JudulFoto }}</td>
-            <td>{{ $comments->cmn_comment }}</td>
+            <td>{{ $comments->IsiKomentar }}</td>
             <td>{{ $comments->cmn_name }}</td>
-            <td>{{ $comments->cmn_email}}</td>
           </tr>
           @endforeach
                   </tbody>

@@ -12,7 +12,7 @@ class CreateLikephotosTable extends Migration
      * @return void
      */
     public function up()
-    {
+    { 
         Schema::create('likephotos', function (Blueprint $table) {
             $table->bigIncrements('LikeID');
             $table->date('TanggalLike');
